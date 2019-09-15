@@ -32,7 +32,7 @@ describe Api::V1::EquationsController do
       end
 
       it 'when one of coefficients is not Numeric' do
-        post :quadratic, params: { coefficients: [1, 'String', 2] }, as: :json
+        post :linear, params: { coefficients: [1, 'String'] }, as: :json
 
         expect(response).to have_http_status :ok
         expect(response.body).to eq({ error: 'wrong type of coefficient' }.to_json)
