@@ -4,6 +4,7 @@ class QuadraticEquation < Equation
   def solve(coefficients)
     raise TypeError, "wrong type of coefficients (given #{coefficients.class}, expected Array)" if coefficients.class != Array
     raise CoefficientError, "wrong number of coefficients (given #{coefficients.size}, expected 3)" if coefficients.size != 3
+    raise CoefficientError, "wrong value of `a` coefficient (can't be 0)" if coefficients.first == 0
 
     a, b, c = coefficients
     discriminant = b ** 2 - 4 * a * c

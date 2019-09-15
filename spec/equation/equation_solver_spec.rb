@@ -35,7 +35,7 @@ describe EquationSolver do
   end
 
   describe 'solve quadratic equation' do
-    it 'with wrong number of coefficients' do
+    it 'with wrong type of coefficients' do
       solver = EquationSolver.new('String', :quadratic)
 
       expect{solver.solve}.to raise_error TypeError, "wrong type of coefficients (given String, expected Array)"
@@ -45,6 +45,12 @@ describe EquationSolver do
       solver = EquationSolver.new([0, 10], :quadratic)
 
       expect{solver.solve}.to raise_error Equation::CoefficientError, "wrong number of coefficients (given 2, expected 3)"
+    end
+
+    it 'with wrong value of `a` coefficient' do
+      solver = EquationSolver.new([0, 3, 10], :quadratic)
+
+      expect{solver.solve}.to raise_error Equation::CoefficientError, "wrong value of `a` coefficient (can't be 0)"
     end
 
     it 'with positive discriminant and integer roots' do
