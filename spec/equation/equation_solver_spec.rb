@@ -2,6 +2,20 @@ require 'rails_helper'
 require_relative '../../lib/equation'
 
 describe EquationSolver do
+  describe 'type' do
+    it 'getter' do
+      solver = EquationSolver.new([1, 2], :linear)
+      expect(solver.type).to eq(:linear)
+    end
+
+    it 'setter' do
+      solver = EquationSolver.new([1, 2], :linear)
+      solver.type = :quadratic
+
+      expect(solver.type).to eq(:quadratic)
+    end
+  end
+
   describe 'solve linear equation' do
     it 'with wrong number of coefficients' do
       solver = EquationSolver.new('String', :linear)

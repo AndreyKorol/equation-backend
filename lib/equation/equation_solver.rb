@@ -15,6 +15,10 @@ class EquationSolver
     @solver = SOLVERS[type].new
   end
 
+  def type
+    SOLVERS.key(solver.class)
+  end
+
   def type=(type)
     @solver = SOLVERS[type].new
   end
