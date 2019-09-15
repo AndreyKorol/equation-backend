@@ -4,6 +4,7 @@ class LinearEquation < Equation
   def solve(coefficients)
     raise TypeError, "wrong type of coefficients (given #{coefficients.class}, expected Array)" if coefficients.class != Array
     raise CoefficientError, "wrong number of coefficients (given #{coefficients.size}, expected 2)" if coefficients.size != 2
+    raise TypeError, 'wrong type of coefficient' if coefficients.any? { |coefficient| !coefficient.class.ancestors.include?(Numeric) }
 
     a, b = coefficients
 

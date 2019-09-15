@@ -4,6 +4,7 @@ class QuadraticEquation < Equation
   def solve(coefficients)
     raise TypeError, "wrong type of coefficients (given #{coefficients.class}, expected Array)" if coefficients.class != Array
     raise CoefficientError, "wrong number of coefficients (given #{coefficients.size}, expected 3)" if coefficients.size != 3
+    raise TypeError, 'wrong type of coefficient' if coefficients.any? { |coefficient| !coefficient.class.ancestors.include?(Numeric) }
     raise CoefficientError, "wrong value of `a` coefficient (can't be 0)" if coefficients.first == 0
 
     a, b, c = coefficients
