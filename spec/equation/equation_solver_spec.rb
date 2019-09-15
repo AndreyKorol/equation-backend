@@ -17,16 +17,22 @@ describe EquationSolver do
   end
 
   describe 'solve linear equation' do
-    it 'with wrong number of coefficients' do
+    it 'with wrong type of coefficients' do
       solver = EquationSolver.new('String', :linear)
 
-      expect{solver.solve}.to raise_error TypeError, "wrong type of coefficients (given String, expected Array)"
+      expect{solver.solve}.to raise_error TypeError, 'wrong type of coefficients (given String, expected Array)'
     end
 
     it 'with wrong number of coefficients' do
       solver = EquationSolver.new([0, 10, 1], :linear)
 
-      expect{solver.solve}.to raise_error Equation::CoefficientError, "wrong number of coefficients (given 3, expected 2)"
+      expect{solver.solve}.to raise_error Equation::CoefficientError, 'wrong number of coefficients (given 3, expected 2)'
+    end
+
+    it 'with wrong type of coefficient' do
+      solver = EquationSolver.new(['String', 2], :linear)
+
+      expect{solver.solve}.to raise_error TypeError, 'wrong type of coefficient'
     end
 
     it 'with infinite set of solution' do
@@ -52,13 +58,19 @@ describe EquationSolver do
     it 'with wrong type of coefficients' do
       solver = EquationSolver.new('String', :quadratic)
 
-      expect{solver.solve}.to raise_error TypeError, "wrong type of coefficients (given String, expected Array)"
+      expect{solver.solve}.to raise_error TypeError, 'wrong type of coefficients (given String, expected Array)'
     end
 
     it 'with wrong number of coefficients' do
       solver = EquationSolver.new([0, 10], :quadratic)
 
-      expect{solver.solve}.to raise_error Equation::CoefficientError, "wrong number of coefficients (given 2, expected 3)"
+      expect{solver.solve}.to raise_error Equation::CoefficientError, 'wrong number of coefficients (given 2, expected 3)'
+    end
+
+    it 'with wrong type of coefficient' do
+      solver = EquationSolver.new(['String', 2, 3], :quadratic)
+
+      expect{solver.solve}.to raise_error TypeError, 'wrong type of coefficient'
     end
 
     it 'with wrong value of `a` coefficient' do
