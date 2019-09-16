@@ -7,4 +7,6 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  match '*path', controller: 'api/v1/api', action: 'cors_preflight_check', via: [:options]
 end
